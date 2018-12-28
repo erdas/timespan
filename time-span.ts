@@ -10,12 +10,12 @@ export class TimeSpan {
 
     private static interval(value: number, scale: number): TimeSpan {
         if (Number.isNaN(value)) {
-            throw new Error("value can't be  is NaN");
+            throw new Error("value can't be NaN");
         }
 
         const tmp = value * scale;
         const millis = TimeSpan.round(tmp + (value >= 0 ? 0.5 : -0.5));
-        if ((millis > TimeSpan.maxValue.totalMilliseconds / MILLIS_PER_SECOND) || (millis < TimeSpan.minValue.totalMilliseconds / MILLIS_PER_SECOND)) {
+        if ((millis > TimeSpan.maxValue.totalMilliseconds) || (millis < TimeSpan.minValue.totalMilliseconds)) {
             throw new TimeSpanOverflowError("TimeSpanTooLong");
         }
 

@@ -1,4 +1,6 @@
 import { TimeSpan } from "./time-span";
+import { TimeSpanOverflowError } from "./time-span-overflow-error";
+
 describe("Suite for testing the TimeSpan class", () => {
     describe("When a new TimeSpan created from 10 seconds", () => {
         it("should have a total of 10 seconds", (() => {
@@ -121,6 +123,72 @@ describe("Suite for testing the TimeSpan class", () => {
             expect(ts.totalMinutes).toBe(1501.0166833333333);
             expect(ts.totalSeconds).toBe(90061.001);
             expect(ts.totalMilliseconds).toBe(90061001);
+        }));
+    });
+    describe("When create a TimeSpan from days with the maximal safe integer", () => {
+        it("should throw a TimeSpanOverflowError", (() => {
+            expect(() => TimeSpan.fromDays(Number.MAX_SAFE_INTEGER)).toThrowError(TimeSpanOverflowError);
+        }));
+    });
+    describe("When create a TimeSpan from days with the minimal safe integer", () => {
+        it("should throw a TimeSpanOverflowError", (() => {
+            expect(() => TimeSpan.fromDays(Number.MIN_SAFE_INTEGER)).toThrowError(TimeSpanOverflowError);
+        }));
+    });
+    describe("When create a TimeSpan from hours with the maximal safe integer", () => {
+        it("should throw a TimeSpanOverflowError", (() => {
+            expect(() => TimeSpan.fromHours(Number.MAX_SAFE_INTEGER)).toThrowError(TimeSpanOverflowError);
+        }));
+    });
+    describe("When create a TimeSpan from hours with the minimal safe integer", () => {
+        it("should throw a TimeSpanOverflowError", (() => {
+            expect(() => TimeSpan.fromHours(Number.MIN_SAFE_INTEGER)).toThrowError(TimeSpanOverflowError);
+        }));
+    });
+    describe("When create a TimeSpan from minutes with the maximal safe integer", () => {
+        it("should throw a TimeSpanOverflowError", (() => {
+            expect(() => TimeSpan.fromMinutes(Number.MAX_SAFE_INTEGER)).toThrowError(TimeSpanOverflowError);
+        }));
+    });
+    describe("When create a TimeSpan from minutes with the minimal safe integer", () => {
+        it("should throw a TimeSpanOverflowError", (() => {
+            expect(() => TimeSpan.fromMinutes(Number.MIN_SAFE_INTEGER)).toThrowError(TimeSpanOverflowError);
+        }));
+    });
+    describe("When create a TimeSpan from seconds with the maximal safe integer", () => {
+        it("should throw a TimeSpanOverflowError", (() => {
+            expect(() => TimeSpan.fromSeconds(Number.MAX_SAFE_INTEGER)).toThrowError(TimeSpanOverflowError);
+        }));
+    });
+    describe("When create a TimeSpan from seconds with the minimal safe integer", () => {
+        it("should throw a TimeSpanOverflowError", (() => {
+            expect(() => TimeSpan.fromSeconds(Number.MIN_SAFE_INTEGER)).toThrowError(TimeSpanOverflowError);
+        }));
+    });
+    describe("When create a TimeSpan from milliseconds with the maximal safe integer", () => {
+        it("should throw a TimeSpanOverflowError", (() => {
+            expect(() => TimeSpan.fromMilliseconds(Number.MAX_SAFE_INTEGER)).toThrowError(TimeSpanOverflowError);
+        }));
+    });
+    describe("When create a TimeSpan from milliseconds with the minimal safe integer", () => {
+        it("should throw a TimeSpanOverflowError", (() => {
+            expect(() => TimeSpan.fromMilliseconds(Number.MIN_SAFE_INTEGER)).toThrowError(TimeSpanOverflowError);
+        }));
+    });
+    describe("When create a TimeSpan from milliseconds with the maximal safe integer - 1", () => {
+        it("should not throw a TimeSpanOverflowError", (() => {
+            expect(() => {
+                const validInteger = Number.MAX_SAFE_INTEGER - 1;
+                TimeSpan.fromMilliseconds(validInteger);
+            }).not.toThrow();
+        }));
+    });
+    describe("When create a TimeSpan from milliseconds with the minimal safe integer + 1", () => {
+        it("should not throw a TimeSpanOverflowError", (() => {
+            {
+                const validInteger = Number.MIN_SAFE_INTEGER + 1;
+                expect(() => TimeSpan.fromMilliseconds(validInteger)).not.toThrow();
+            }
         }));
     });
 });

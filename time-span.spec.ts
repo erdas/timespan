@@ -85,4 +85,30 @@ describe("Suite for testing the TimeSpan class", () => {
             expect(ts.milliseconds).toBe(1);
         }));
     });
+    describe("When create a TimeSpan from Time of 1 hour, 1 minute and 1 second ", () => {
+        it("should be 0 days, 1 hour, 1 minute, 1 second, 0 milliseconds and a total milliseconds of 3661000", (() => {
+            const ts = TimeSpan.fromTime(1, 1, 1);
+            expect(ts.days).toBe(0);
+            expect(ts.hours).toBe(1);
+            expect(ts.minutes).toBe(1);
+            expect(ts.seconds).toBe(1);
+            expect(ts.milliseconds).toBe(0);
+            expect(ts.totalMilliseconds).toBe(3661000);
+        }));
+    });
+    describe("When create a TimeSpan from Time of 1 day, 1 hour, 1 minute and 1 second and 1 millisecond ", () => {
+        it("should be 1 day, 1 hour, 1 minute, 1 second, 0 milliseconds and a total milliseconds of 90061001", (() => {
+            const ts = TimeSpan.fromTime2(1, 1, 1, 1, 1);
+            expect(ts.days).toBe(1);
+            expect(ts.hours).toBe(1);
+            expect(ts.minutes).toBe(1);
+            expect(ts.seconds).toBe(1);
+            expect(ts.milliseconds).toBe(1);
+            expect(ts.totalDays).toBe(1.0423726967592593);
+            expect(ts.totalHours).toBe(25.016944722222224);
+            expect(ts.totalMinutes).toBe(1501.0166833333333);
+            expect(ts.totalSeconds).toBe(90061.001);
+            expect(ts.totalMilliseconds).toBe(90061001);
+        }));
+    });
 });

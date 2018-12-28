@@ -8,7 +8,7 @@ const MILLIS_PER_DAY = MILLIS_PER_HOUR * 24;        // 86,400,000
 export class TimeSpan {
     private _millis: number;
 
-    private static Interval(value: number, scale: number): TimeSpan {
+    private static interval(value: number, scale: number): TimeSpan {
         if (Number.isNaN(value)) {
             throw new Error("value can't be  is NaN");
         }
@@ -33,8 +33,8 @@ export class TimeSpan {
     }
 
     private static timeToMilliseconds(hour: number, minute: number, second: number): number {
-        const totalSeconds = hour * MILLIS_PER_HOUR + minute * MILLIS_PER_MINUTE + second;
-        if (totalSeconds > TimeSpan.maxValue.seconds || totalSeconds < TimeSpan.minValue.seconds) {
+        const totalSeconds = (hour * 3600) + (minute * 60) + second;
+        if (totalSeconds > TimeSpan.maxValue.totalSeconds || totalSeconds < TimeSpan.minValue.totalSeconds) {
             throw new TimeSpanOverflowError("TimeSpanTooLong");
         }
 
@@ -54,23 +54,23 @@ export class TimeSpan {
     }
 
     public static fromDays(value: number): TimeSpan {
-        return TimeSpan.Interval(value, MILLIS_PER_DAY);
+        return TimeSpan.interval(value, MILLIS_PER_DAY);
     }
 
     public static fromHours(value: number): TimeSpan {
-        return TimeSpan.Interval(value, MILLIS_PER_HOUR);
+        return TimeSpan.interval(value, MILLIS_PER_HOUR);
     }
 
     public static fromMilliseconds(value: number): TimeSpan {
-        return TimeSpan.Interval(value, 1);
+        return TimeSpan.interval(value, 1);
     }
 
     public static fromMinutes(value: number): TimeSpan {
-        return TimeSpan.Interval(value, MILLIS_PER_MINUTE);
+        return TimeSpan.interval(value, MILLIS_PER_MINUTE);
     }
 
     public static fromSeconds(value: number): TimeSpan {
-        return TimeSpan.Interval(value, MILLIS_PER_SECOND);
+        return TimeSpan.interval(value, MILLIS_PER_SECOND);
     }
 
     public static fromTime(hours: number, minutes: number, seconds: number): TimeSpan {
@@ -79,7 +79,12 @@ export class TimeSpan {
     }
 
     public static fromTime2(days: number, hours: number, minutes: number, seconds: number, milliseconds: number) {
-        const totalMilliSeconds = (days * MILLIS_PER_DAY + hours * MILLIS_PER_HOUR + minutes * MILLIS_PER_MINUTE + seconds) * 1000 + milliseconds;
+        const totalMilliSeconds = (days * MILLIS_PER_DAY) +
+            (hours * MILLIS_PER_HOUR) +
+            (minutes * MILLIS_PER_MINUTE) +
+            (seconds * MILLIS_PER_SECOND) +
+            milliseconds;
+
         if (totalMilliSeconds > TimeSpan.maxValue.totalMilliseconds || totalMilliSeconds < TimeSpan.minValue.totalMilliseconds) {
             throw new TimeSpanOverflowError("TimeSpanTooLong");
         }

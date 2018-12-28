@@ -107,9 +107,7 @@ export class TimeSpan {
     }
 
     public get milliseconds(): number {
-        const b = this._millis % 1000;
-        const a = TimeSpan.round(this._millis % 1000);
-        return a;
+        return TimeSpan.round(this._millis % 1000);
     }
 
     public get totalDays(): number {

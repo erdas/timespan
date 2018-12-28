@@ -73,6 +73,18 @@ describe("Suite for testing the TimeSpan class", () => {
             expect(ts.milliseconds).toBe(1);
         }));
     });
+    describe("When substracting one hour from a TimeSpan of one day", () => {
+        it("should be 0 days and 23 hours, 0 minutes, 0 seconds and 0 milliseconds", (() => {
+            const ts1 = TimeSpan.fromDays(1);
+            const ts2 = TimeSpan.fromHours(1);
+            const ts = ts1.subtract(ts2);
+            expect(ts.days).toBe(0);
+            expect(ts.hours).toBe(23);
+            expect(ts.minutes).toBe(0);
+            expect(ts.seconds).toBe(0);
+            expect(ts.milliseconds).toBe(0);
+        }));
+    });
     describe("When adding 1 hour to a TimeSpan from 90061001 milliseconds", () => {
         it("should be 1 day, 2 hours, 1 minute, 1 second and 1 millisecond", (() => {
             const ts1 = new TimeSpan(90061001);

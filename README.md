@@ -1,4 +1,4 @@
-# timespan
+# TimeSpan
 
 The TimeSpan class represents a time interval. It is never related to a particular date.
 
@@ -109,6 +109,38 @@ The TimeSpan class represents a time interval. It is never related to a particul
 ``` typescript
 
 	const ts = TimeSpan.minValue;
+
+```
+
+#### Add 
+
+``` typescript
+
+	const ts1 = TimeSpan.fromDays(1);
+	const ts2 = TimeSpan.fromHours(1);
+	const ts = ts1.add(ts2);
+
+	console.log(ts.days); 				// 1
+	console.log(ts.hours); 				// 1
+	console.log(ts.minutes);			// 0
+	console.log(ts.seconds);			// 0
+	console.log(ts.milliseconds);			// 0
+
+```
+
+#### Substract 
+
+``` typescript
+
+	const ts1 = TimeSpan.fromDays(1);
+	const ts2 = TimeSpan.fromHours(1);
+	const ts = ts1.substact(ts2);
+
+	console.log(ts.days); 				// 0
+	console.log(ts.hours); 				// 23
+	console.log(ts.minutes);			// 0
+	console.log(ts.seconds);			// 0
+	console.log(ts.milliseconds);			// 0
 
 ```
 

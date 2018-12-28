@@ -128,13 +128,13 @@ The TimeSpan class represents a time interval. It is never related to a particul
 
 ```
 
-#### Substract 
+#### Subtract 
 
 ``` typescript
 
 	const ts1 = TimeSpan.fromDays(1);
 	const ts2 = TimeSpan.fromHours(1);
-	const ts = ts1.substact(ts2);
+	const ts = ts1.subtract(ts2);
 
 	console.log(ts.days); 				// 0
 	console.log(ts.hours); 				// 23

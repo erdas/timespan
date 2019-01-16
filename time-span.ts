@@ -1,5 +1,4 @@
 import { TimeSpanOverflowError } from "./time-span-overflow-error";
-import { min } from "rxjs/operators";
 
 const MILLIS_PER_SECOND = 1000;
 const MILLIS_PER_MINUTE = MILLIS_PER_SECOND * 60;   //     60,000

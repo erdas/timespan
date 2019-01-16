@@ -1,4 +1,5 @@
 import { TimeSpanOverflowError } from "./time-span-overflow-error";
+import { min } from "rxjs/operators";
 
 const MILLIS_PER_SECOND = 1000;
 const MILLIS_PER_MINUTE = MILLIS_PER_SECOND * 60;   //     60,000
@@ -73,12 +74,22 @@ export class TimeSpan {
         return TimeSpan.interval(value, MILLIS_PER_SECOND);
     }
 
-    public static fromTime(hours: number, minutes: number, seconds: number): TimeSpan {
+    public static fromTime(hours: number, minutes: number, seconds: number): TimeSpan;
+    public static fromTime(days: number, hours: number, minutes: number, seconds: number, milliseconds: number): TimeSpan;
+    public static fromTime(daysOrHours: number, hoursOrMinutes: number, minutesOrSeconds: number, seconds?: number, milliseconds?: number): TimeSpan {
+        if (milliseconds != undefined) {
+            return this.fromTimeStartingFromDays(daysOrHours, hoursOrMinutes, minutesOrSeconds, seconds, milliseconds);
+        } else {
+            return this.fromTimeStartingFromHours(daysOrHours, hoursOrMinutes, minutesOrSeconds);
+        }
+    }
+
+    private static fromTimeStartingFromHours(hours: number, minutes: number, seconds: number): TimeSpan {
         const millis = TimeSpan.timeToMilliseconds(hours, minutes, seconds);
         return new TimeSpan(millis);
     }
 
-    public static fromTime2(days: number, hours: number, minutes: number, seconds: number, milliseconds: number) {
+    private static fromTimeStartingFromDays(days: number, hours: number, minutes: number, seconds: number, milliseconds: number): TimeSpan {
         const totalMilliSeconds = (days * MILLIS_PER_DAY) +
             (hours * MILLIS_PER_HOUR) +
             (minutes * MILLIS_PER_MINUTE) +

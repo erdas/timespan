@@ -112,7 +112,7 @@ describe("Suite for testing the TimeSpan class", () => {
     });
     describe("When create a TimeSpan from Time of 1 day, 1 hour, 1 minute and 1 second and 1 millisecond ", () => {
         it("should be 1 day, 1 hour, 1 minute, 1 second, 0 milliseconds and a total milliseconds of 90061001", (() => {
-            const ts = TimeSpan.fromTime2(1, 1, 1, 1, 1);
+            const ts = TimeSpan.fromTime(1, 1, 1, 1, 1);
             expect(ts.days).toBe(1);
             expect(ts.hours).toBe(1);
             expect(ts.minutes).toBe(1);

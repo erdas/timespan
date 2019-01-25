@@ -84,7 +84,7 @@ The TimeSpan class represents a time interval. It is never related to a particul
 	const minutes = 1;
 	const seconds = 1;
 	const milliseconds = 1;
-	const ts = TimeSpan.fromTime2(days, hours, minutes, seconds, milliseconds);
+	const ts = TimeSpan.fromTime(days, hours, minutes, seconds, milliseconds);
 
 ```
 

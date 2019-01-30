@@ -75,7 +75,7 @@ The TimeSpan class represents a time interval. It is never related to a particul
 
 ```
 
-#### From time2 with given days, hours, minutes, seconds and milliseconds
+#### From time with given days, hours, minutes, seconds and milliseconds
 
 ``` typescript
 	
@@ -93,14 +93,6 @@ The TimeSpan class represents a time interval. It is never related to a particul
 ``` typescript
 
 	const ts = TimeSpan.maxValue;
-
-```
-
-#### From minimal safe integer
-
-``` typescript
-
-	const ts = TimeSpan.minValue;
 
 ```
 

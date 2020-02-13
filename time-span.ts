@@ -101,6 +101,15 @@ export class TimeSpan {
         return new TimeSpan(totalMilliSeconds);
     }
 
+    public static Parse(span: string, separator = ':') {
+        const spanArr = span.split(separator);
+        let result = TimeSpan.zero;
+        result = result.add(TimeSpan.fromHours(+spanArr[0]));
+        result = result.add(TimeSpan.fromMinutes(+spanArr[1]));
+        result = result.add(TimeSpan.fromSeconds(+spanArr[2]));
+        return result;
+    }
+
     constructor(millis: number) {
         this._millis = millis;
     }

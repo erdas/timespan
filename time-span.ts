@@ -101,7 +101,7 @@ export class TimeSpan {
         return new TimeSpan(totalMilliSeconds);
     }
 
-    public static Parse(span: string, separator = ':') {
+    public static parse(span: string, separator = ':') {
         const spanArr = span.split(separator);
         let result = TimeSpan.zero;
         result = result.add(TimeSpan.fromHours(+spanArr[0]));
